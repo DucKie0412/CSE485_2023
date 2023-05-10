@@ -37,17 +37,7 @@
                         <td class="text-center"><?php echo $student->get_Age(); ?></td>
                         <td class="text-center"><?php echo $student->get_Grade(); ?></td>
                         <td class="text-center">
-                            <button type="button" class="btn btn-link"><i class="bi bi-trash3">
-                            <?php 
-                              foreach($student as $index => $student){
-                                if($student->get_ID() == $id){
-                                  $student->delete();
-                                }
-                              }
-                            
-                            ?>
-
-                            </i></button>
+                            <button type="button" class="btn btn-link"><i class="bi bi-trash3"></i></button>
                             <button type="button" class="btn btn-link"><i class="bi bi-wrench"></i></button>
                         </td>
                     </tr>

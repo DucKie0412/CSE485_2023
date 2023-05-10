@@ -1,0 +1,40 @@
+.form-horizontal h1{
+    color: black;
+    text-align: center;
+    font-style: inherit;
+    font-weight: 10;
+    padding-bottom: 30px;
+
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.form-horizontal{
+    border: 2px solid black;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    padding: 30px;
+
+
+}
+
+input:hover{
+        border-color: rgb(51, 124, 233);
+        transition: 0.5s ease-in-out;
+        -webkit-transition: 0.5s ease-in-out;
+        -moz-transition: 0.5s ease-in-out;
+        -ms-transition: 0.5s ease-in-out;
+        -o-transition: 0.5s ease-in-out;
+}
+
+
+#submit_btn{
+    margin-top: 20px;
+}

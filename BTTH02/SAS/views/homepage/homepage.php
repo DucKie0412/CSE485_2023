@@ -12,7 +12,7 @@
 
     <div class="grid-container">
     <div class="course-card">
-      <a href="../mainpage/mainPage.php">
+      <a href="../loginpage/loginPage.php">
         <img src="course1.jpg" alt="Khóa học 1" class="course-image">
         <h2 class="course-title">Khóa học 1</h2>
         <p class="course-description">Mô tả khóa học 1.</p>
@@ -20,7 +20,7 @@
     </div>
 
     <div class="course-card">
-      <a href="../mainpage/mainPage.php">
+      <a href="../loginpage/loginPage.php">
         <img src="course2.jpg" alt="Khóa học 2" class="course-image">
         <h2 class="course-title">Khóa học 2</h2>
         <p class="course-description">Mô tả khóa học 2.</p>
@@ -28,7 +28,7 @@
     </div>
 
     <div class="course-card">
-      <a href="../mainpage/mainPage.php">
+      <a href="../loginpage/loginPage.php">
         <img src="course3.jpg" alt="Khóa học 3" class="course-image">
         <h2 class="course-title">Khóa học 3</h2>
         <p class="course-description">Mô tả khóa học 3.</p>

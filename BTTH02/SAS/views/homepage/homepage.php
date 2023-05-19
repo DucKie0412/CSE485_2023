@@ -10,32 +10,51 @@
   <p>Chào mừng đến với trang điểm danh</p>
     <p>Vui lòng chọn khóa học để tiếp tục!!</p>
 
-    <div class="grid-container">
+      <?php
+        require_once '../../models/CourseModel.php';
+
+        $courseModel = new CourseModel();
+
+        // Lấy danh sách tất cả các khóa học
+        $courses = $courseModel->getAllCourses();
+
+        // Hiển thị tên khóa học
+        foreach ($courses as $course) {
+     
+          $courseId = $course['id_Course'];
+          $csd = $course['name'];
+        }
+      ?>
+  
+  <div class="grid-container">
     <div class="course-card">
       <a href="../loginpage/loginPage.php">
-        <img src="course1.jpg" alt="Khóa học 1" class="course-image">
-        <h2 class="course-title">Khóa học 1</h2>
-        <p class="course-description">Mô tả khóa học 1.</p>
+        <img src="./jpg/course.jpg" alt="Khóa học 1" class="course-image">
+        <h2 class="course-title"> <?php echo $courseId; ?></h2>
+        <p class="course-description"><?php echo $csd; ?></p>
       </a>
     </div>
 
     <div class="course-card">
       <a href="../loginpage/loginPage.php">
-        <img src="course2.jpg" alt="Khóa học 2" class="course-image">
-        <h2 class="course-title">Khóa học 2</h2>
-        <p class="course-description">Mô tả khóa học 2.</p>
+        <img src="./jpg/course.jpg" alt="Khóa học 2" class="course-image">
+        <h2 class="course-title"><?php echo $courseId; ?></h2>
+        <p class="course-description"><?php echo $csd; ?></p>
       </a>
     </div>
 
     <div class="course-card">
       <a href="../loginpage/loginPage.php">
-        <img src="course3.jpg" alt="Khóa học 3" class="course-image">
-        <h2 class="course-title">Khóa học 3</h2>
-        <p class="course-description">Mô tả khóa học 3.</p>
+        <img src="./jpg/course.jpg" alt="Khóa học 3" class="course-image">
+        <h2 class="course-title"><?php echo $courseId; ?></h2>
+        <p class="course-description"><?php echo $csd; ?></p>
       </a>
     </div>
 
-    <!-- Thêm các khóa học khác tương tự -->
+
+    
+    
   </div>
 </body>
-</html>
+</html> 
+

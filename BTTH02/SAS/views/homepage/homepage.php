@@ -9,8 +9,7 @@
   <h1>Hệ thống điểm danh cây nhà lá vườn</h1>
   <p>Chào mừng đến với trang điểm danh</p>
     <p>Vui lòng chọn khóa học để tiếp tục!!</p>
-    <div class="grid-container">
-      <a href="../loginpage/loginPage.php">
+
       <?php
         require_once '../../models/CourseModel.php';
 
@@ -24,13 +23,35 @@
      
           $courseId = $course['id_Course'];
           $csd = $course['name'];
-
-          echo '<h2>' . $courseId . '</h2>';
-          echo '<p>' . $csd . '</p>';
         }
       ?>
-    </a>
+  
+  <div class="grid-container">
+    <div class="course-card">
+      <a href="../loginpage/loginPage.php">
+        <img src="./jpg/course.jpg" alt="Khóa học 1" class="course-image">
+        <h2 class="course-title"> <?php echo $courseId; ?></h2>
+        <p class="course-description"><?php echo $csd; ?></p>
+      </a>
     </div>
+
+    <div class="course-card">
+      <a href="../loginpage/loginPage.php">
+        <img src="./jpg/course.jpg" alt="Khóa học 2" class="course-image">
+        <h2 class="course-title"><?php echo $courseId; ?></h2>
+        <p class="course-description"><?php echo $csd; ?></p>
+      </a>
+    </div>
+
+    <div class="course-card">
+      <a href="../loginpage/loginPage.php">
+        <img src="./jpg/course.jpg" alt="Khóa học 3" class="course-image">
+        <h2 class="course-title"><?php echo $courseId; ?></h2>
+        <p class="course-description"><?php echo $csd; ?></p>
+      </a>
+    </div>
+
+
     
     
   </div>

@@ -1,0 +1,6 @@
+id,name,age,grade
+2,Jane Doe,13,,Michael Johnson,11,5
+4,Emily Davis,12,6
+5,James Rodriguez,14,8
+6,vietanh,22,12
+7,abc,22,2

@@ -1,0 +1,56 @@
+/* admin.css */
+
+/* Thiết lập font chữ và định dạng trang */
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    margin-bottom: 10px;
+  }
+  
+  /* Thiết lập lưới hiển thị khóa học */
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+  }
+  
+  .course-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+  }
+  
+  .course-image {
+    width: 200px;
+    height: 150px;
+    margin-bottom: 10px;
+  }
+  
+  .course-title {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  
+  .course-description {
+    font-size: 14px;
+  }
+  
+  /* Thiết lập liên kết */
+  a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  a:hover {
+    color: #000;
+  }
+  

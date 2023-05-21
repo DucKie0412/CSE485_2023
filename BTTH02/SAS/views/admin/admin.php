@@ -1,100 +1,40 @@
-<?php
-// Kiểm tra xác thực và vai trò của người dùng
-session_start();
-
-// Kiểm tra xác thực
-if (!isset($_SESSION['username'])) {
-    header("Location: loginPage.php");
-    exit();
-}
-
-// Kiểm tra vai trò
-if ($_SESSION['role'] != 'admin') {
-    echo "Bạn không có quyền truy cập trang này.";
-    exit();
-}
-
-// Kết nối CSDL
-$servername = "localhost";
-$username = "your_username";
-$password = "your_password";
-$dbname = "university";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Kiểm tra kết nối
-if ($conn->connect_error) {
-    die("Kết nối CSDL thất bại: " . $conn->connect_error);
-}
-
-// Lấy danh sách sinh viên
-function getStudents($conn)
-{
-    $sql = "SELECT * FROM students";
-    $result = $conn->query($sql);
-    
-    $students = array();
-    
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $students[] = $row;
-        }
-    }
-    
-    return $students;
-}
-
-// Hiển thị danh sách sinh viên
-$students = getStudents($conn);
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Quản lí điểm danh</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-        }
-        
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
+  <title>Trang quản lí Điểm danh</title>
+  <link rel="stylesheet" type="text/css" href="admin.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="admin.css">
+
 </head>
 <body>
-    <h1>Quản lí điểm danh</h1>
-    
-    <table>
-        <tr>
-            <th>ID Sinh viên</th>
-            <th>Tên</th>
-            <th>Ngày sinh</th>
-            <th>Email</th>
-            <th>Thông tin liên hệ</th>
-            <th>Điểm danh</th>
-        </tr>
-        
-        <?php foreach ($students as $student): ?>
-        <tr>
-            <td><?php echo $student['student_id']; ?></td>
-            <td><?php echo $student['name']; ?></td>
-            <td><?php echo $student['date_of_birth']; ?></td>
-            <td><?php echo $student['email']; ?></td>
-            <td><?php echo $student['contact_info']; ?></td>
-            <td><a href="mark_attendance.php?student_id=<?php echo $student['student_id']; ?>">Điểm danh</a></td>
-        </tr>
-        <?php endforeach; ?>
-    </table>
-    
-    <br>
-    <a href="logout.php">Đăng xuất</a>
+  <h1>Hệ thống quản lí điểm danh cây nhà lá vườn</h1>
+  <p>Chào mừng đến với trang quản lí điểm danh</p>
+  <p>Vui lòng chọn khóa học để tiếp tục!!</p>
+
+  <?php
+    require_once '../../models/CourseModel.php';
+
+    $courseModel = new CourseModel();
+
+    // Lấy danh sách tất cả các khóa học
+    $courses = $courseModel->getAllCourses();
+
+    // Hiển thị tên khóa học
+    foreach ($courses as $course) {
+      $courseId = $course['id_Course'];
+      $courseName = $course['name'];
+  ?>
+      <div class="course-card">
+        <a href="attendance.php?course=<?php echo $courseId; ?>">
+          <img src="./jpg/course.jpg" alt="Khóa học <?php echo $courseId; ?>" class="course-image">
+          <h2 class="course-title"><?php echo $courseId; ?></h2>
+          <p class="course-description"><?php echo $courseName; ?></p>
+        </a>
+      </div>
+  <?php
+    }
+  ?>
+
 </body>
 </html>

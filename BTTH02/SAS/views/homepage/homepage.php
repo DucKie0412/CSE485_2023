@@ -20,8 +20,6 @@
 
         // Hiển thị tên khóa học
         foreach ($courses as $course) {
-     
-          $courseId = $course['id_Course'];
           $csd = $course['name'];
         }
       ?>
@@ -30,24 +28,21 @@
     <div class="course-card">
       <a href="../loginpage/loginPage.php">
         <img src="./jpg/course.jpg" alt="Khóa học 1" class="course-image">
-        <h2 class="course-title"> <?php echo $courseId; ?></h2>
-        <p class="course-description"><?php echo $csd; ?></p>
+        <h2 class="course-title"> <?php echo $csd; ?></h2>
       </a>
     </div>
 
     <div class="course-card">
       <a href="../loginpage/loginPage.php">
         <img src="./jpg/course.jpg" alt="Khóa học 2" class="course-image">
-        <h2 class="course-title"><?php echo $courseId; ?></h2>
-        <p class="course-description"><?php echo $csd; ?></p>
+        <h2 class="course-title"> <?php echo $csd; ?></h2>
       </a>
     </div>
 
     <div class="course-card">
       <a href="../loginpage/loginPage.php">
         <img src="./jpg/course.jpg" alt="Khóa học 3" class="course-image">
-        <h2 class="course-title"><?php echo $courseId; ?></h2>
-        <p class="course-description"><?php echo $csd; ?></p>
+        <h2 class="course-title"> <?php echo $csd; ?></h2>
       </a>
     </div>
 

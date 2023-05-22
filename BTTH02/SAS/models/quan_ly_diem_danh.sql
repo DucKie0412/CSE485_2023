@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 18, 2023 lúc 06:54 PM
+-- Thời gian đã tạo: Th5 22, 2023 lúc 08:14 PM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -28,9 +28,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `attendance` (
+  `id` int(25) NOT NULL,
   `attendance_Date` date NOT NULL,
-  `id_Class` varchar(25) NOT NULL,
-  `id_Student` varchar(25) NOT NULL,
+  `id_Course` int(25) NOT NULL,
+  `id_Class` int(25) NOT NULL,
+  `id_Student` int(25) NOT NULL,
   `status` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -38,11 +40,11 @@ CREATE TABLE `attendance` (
 -- Đang đổ dữ liệu cho bảng `attendance`
 --
 
-INSERT INTO `attendance` (`attendance_Date`, `id_Class`, `id_Student`, `status`) VALUES
-('2023-05-16', 'cse1', '1a', 'Co mat'),
-('2023-05-17', 'cse1', '1a', 'Vang mat'),
-('2023-05-16', 'cse1', '2b', 'Co mat'),
-('2023-05-16', 'cse2', '2b', 'Co mat');
+INSERT INTO `attendance` (`id`, `attendance_Date`, `id_Course`, `id_Class`, `id_Student`, `status`) VALUES
+(1, '2023-05-16', 2, 3, 2, 'Co mat'),
+(2, '2023-05-16', 2, 3, 3, 'Co mat'),
+(3, '2023-05-17', 2, 3, 2, 'Vang mat'),
+(4, '2023-05-17', 2, 3, 3, 'Co mat');
 
 -- --------------------------------------------------------
 
@@ -51,18 +53,19 @@ INSERT INTO `attendance` (`attendance_Date`, `id_Class`, `id_Student`, `status`)
 --
 
 CREATE TABLE `class` (
-  `id_Class` varchar(25) NOT NULL,
-  `id_Course` varchar(25) DEFAULT NULL,
-  `id_Lecturer` varchar(25) DEFAULT NULL
+  `id` int(25) NOT NULL,
+  `id_Class` int(25) NOT NULL,
+  `id_Course` int(25) NOT NULL,
+  `id_Lecturer` int(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `class`
 --
 
-INSERT INTO `class` (`id_Class`, `id_Course`, `id_Lecturer`) VALUES
-('cse1', 'cse486', '123'),
-('cse2', 'cse123', '345');
+INSERT INTO `class` (`id`, `id_Class`, `id_Course`, `id_Lecturer`) VALUES
+(1, 2, 3, 2),
+(2, 3, 2, 3);
 
 -- --------------------------------------------------------
 
@@ -71,17 +74,19 @@ INSERT INTO `class` (`id_Class`, `id_Course`, `id_Lecturer`) VALUES
 --
 
 CREATE TABLE `class_student` (
-  `id_Class` varchar(25) NOT NULL,
-  `id_Student` varchar(25) NOT NULL
+  `id` int(25) NOT NULL,
+  `id_Class` int(25) NOT NULL,
+  `id_Student` int(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `class_student`
 --
 
-INSERT INTO `class_student` (`id_Class`, `id_Student`) VALUES
-('cse1', '2b'),
-('cse2', '1a');
+INSERT INTO `class_student` (`id`, `id_Class`, `id_Student`) VALUES
+(1, 2, 3),
+(2, 3, 2),
+(3, 2, 3);
 
 -- --------------------------------------------------------
 
@@ -90,8 +95,9 @@ INSERT INTO `class_student` (`id_Class`, `id_Student`) VALUES
 --
 
 CREATE TABLE `course` (
-  `id_Course` varchar(25) NOT NULL,
-  `id_Lecturer` varchar(25) NOT NULL,
+  `id` int(25) NOT NULL,
+  `id_Course` int(25) NOT NULL,
+  `id_Lecturer` int(25) NOT NULL,
   `name` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -99,9 +105,9 @@ CREATE TABLE `course` (
 -- Đang đổ dữ liệu cho bảng `course`
 --
 
-INSERT INTO `course` (`id_Course`, `id_Lecturer`, `name`) VALUES
-('cse123', '345', 'Lap trinh c#'),
-('cse486', '123', 'Lap trinh web');
+INSERT INTO `course` (`id`, `id_Course`, `id_Lecturer`, `name`) VALUES
+(1, 2, 3, 'Lập trình C#'),
+(2, 3, 2, 'Lập trình Web');
 
 -- --------------------------------------------------------
 
@@ -110,7 +116,8 @@ INSERT INTO `course` (`id_Course`, `id_Lecturer`, `name`) VALUES
 --
 
 CREATE TABLE `lecturer` (
-  `id_Lecturer` varchar(50) NOT NULL,
+  `id` int(25) NOT NULL,
+  `id_Lecturer` int(25) NOT NULL,
   `full_Name` varchar(50) NOT NULL,
   `user_Name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -119,9 +126,9 @@ CREATE TABLE `lecturer` (
 -- Đang đổ dữ liệu cho bảng `lecturer`
 --
 
-INSERT INTO `lecturer` (`id_Lecturer`, `full_Name`, `user_Name`) VALUES
-('123', 'Tran Van A', 'tranvana@gmail.com'),
-('345', 'Tran Van B', 'tranvanb@gmail.com');
+INSERT INTO `lecturer` (`id`, `id_Lecturer`, `full_Name`, `user_Name`) VALUES
+(1, 2, 'Tran Van A', 'tranvana@gmail.com'),
+(2, 3, 'Tran Van B', 'tranvanb@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -130,7 +137,8 @@ INSERT INTO `lecturer` (`id_Lecturer`, `full_Name`, `user_Name`) VALUES
 --
 
 CREATE TABLE `student` (
-  `id_Student` varchar(50) NOT NULL,
+  `id` int(25) NOT NULL,
+  `id_Student` int(25) NOT NULL,
   `full_Name` varchar(50) NOT NULL,
   `birth_Day` date DEFAULT NULL,
   `address` varchar(200) DEFAULT NULL,
@@ -141,9 +149,9 @@ CREATE TABLE `student` (
 -- Đang đổ dữ liệu cho bảng `student`
 --
 
-INSERT INTO `student` (`id_Student`, `full_Name`, `birth_Day`, `address`, `user_Name`) VALUES
-('1a', 'Nguyen Van A', '2002-05-21', 'Ha Noi', 'nguyenvana@gmail.com'),
-('2b', 'Nguyen Van B', '2001-09-20', 'Ha Noi', 'nguyenvanb@gmail.com');
+INSERT INTO `student` (`id`, `id_Student`, `full_Name`, `birth_Day`, `address`, `user_Name`) VALUES
+(1, 2, 'Nguyen Van A', '2002-05-21', 'Ha Noi', 'nguyenvana@gmail.com'),
+(2, 3, 'Nguyen Van B', '2002-09-20', 'Ha Noi', 'nguyenvanb@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -152,21 +160,21 @@ INSERT INTO `student` (`id_Student`, `full_Name`, `birth_Day`, `address`, `user_
 --
 
 CREATE TABLE `user` (
-  `id_User` varchar(25) NOT NULL,
+  `id` int(11) NOT NULL,
   `user_Name` varchar(50) NOT NULL,
   `password` varchar(25) NOT NULL,
-  `role` varchar(25) NOT NULL
+  `role` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `user`
 --
 
-INSERT INTO `user` (`id_User`, `user_Name`, `password`, `role`) VALUES
-('s1a', 'nguyenvana@gmail.com', '123456', '1'),
-('s2b', 'nguyenvanb@gmail.com', '123456', '1'),
-('a123', 'tranvana@gmail.com', '123456', '0'),
-('a345', 'tranvanb@gmail.com', '123456', '0');
+INSERT INTO `user` (`id`, `user_Name`, `password`, `role`) VALUES
+(1, 'nguyenvana@gmail.com', '123456', 1),
+(2, 'nguyenvanb@gmail.com', '123456', 1),
+(3, 'tranvana@gmail.com', '123456', 0),
+(4, 'tranvanb@gmail.com', '123456', 0);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -176,7 +184,9 @@ INSERT INTO `user` (`id_User`, `user_Name`, `password`, `role`) VALUES
 -- Chỉ mục cho bảng `attendance`
 --
 ALTER TABLE `attendance`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `id_Class` (`id_Class`),
+  ADD KEY `id_Course` (`id_Course`),
   ADD KEY `id_Student` (`id_Student`);
 
 --
@@ -222,7 +232,8 @@ ALTER TABLE `student`
 --
 ALTER TABLE `attendance`
   ADD CONSTRAINT `attendance_ibfk_1` FOREIGN KEY (`id_Class`) REFERENCES `class` (`id_Class`),
-  ADD CONSTRAINT `attendance_ibfk_2` FOREIGN KEY (`id_Student`) REFERENCES `student` (`id_Student`);
+  ADD CONSTRAINT `attendance_ibfk_2` FOREIGN KEY (`id_Course`) REFERENCES `course` (`id_Course`),
+  ADD CONSTRAINT `attendance_ibfk_3` FOREIGN KEY (`id_Student`) REFERENCES `student` (`id_Student`);
 
 --
 -- Các ràng buộc cho bảng `class`

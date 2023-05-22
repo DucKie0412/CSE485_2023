@@ -1,15 +1,5 @@
 <?php
-include_once '../models/sql_connect.php';
-class AttendaceController{
-    public function doAttendance($id_Class,$id_Student,$status){
-        $pdo = new Database();
-        $conn = $pdo->getConnection();
-        $attendace_Date = date('Y-m-d');
-        $sql = ("INSERT INTO attendace ($attendace_Date,$id_Class,$id_Student,$status) VALUES (':attendace_Date,:id_Class,:id_Student,:status')");
-        $stmt = $conn->prepare($sql);
-        $stmt->execute([$attendace_Date,$id_Class,$id_Student,$status]);
-    }
-}
+session_start();
 ?>      
 <!doctype html>
 <html lang="en">
@@ -370,17 +360,17 @@ class AttendaceController{
     <div class="overlay-content">
         <h2>Điểm Danh</h2>
         <p>Điểm danh ở đây </p>
-        <form action="attendaceController.php" method="POST">
+        <form action="attendance.php" method="POST">
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="status" id="inlineRadio1" value="option1">
+                <input class="form-check-input" type="radio" name="comat" id="inlineRadio1" value="Co mat">
                 <label class="form-check-label" for="inlineRadio1">Có mặt</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="option2">
+                <input class="form-check-input" type="radio" name="muon" id="inlineRadio2" value="Muon">
                 <label class="form-check-label" for="inlineRadio2">Muộn</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="status" id="inlineRadio3" value="option3">
+                <input class="form-check-input" type="radio" name="vangmat" id="inlineRadio3" value="Vang mat">
                 <label class="form-check-label" for="inlineRadio3">Vắng mặt</label>
             </div>
             <button type = "submit" id="hide-overlay">Gửi</button>
